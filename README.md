@@ -12,7 +12,7 @@ This game is part of the [Front-End Web Developer Nanodegree Program](https://eu
 
 Clone the [repo](https://github.com/mouseProgrammouse/frontend-nanodegree-feedreader) and open index.html
 
-Play on GitHub.io: [Feedreader]()
+Try on GitHub.io: [Feedreader](https://mouseprogrammouse.github.io/frontend-nanodegree-feedreader/index.html)
 
 # List of tests
 
