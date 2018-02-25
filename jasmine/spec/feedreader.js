@@ -56,10 +56,10 @@ $(function() {
         it('hiding/opening menu is working', function() {
             //click on menu icon for open
             $('.menu-icon-link').trigger('click');
-            expect($('body').attr('class')).not.toContain('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).toBe(false);
             //close menu
             $('.menu-icon-link').trigger('click');
-            expect($('body').attr('class')).toContain('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
     });
 
@@ -72,10 +72,9 @@ $(function() {
             loadFeed(0, done);
         });
 
-        it('feed is loaded', function(done) {
+        it('feed is loaded', function() {
             //check that feed is loaded
             expect($('.feed .entry').length).toBeGreaterThan(0);
-            done();
         });
     });
 
@@ -89,16 +88,13 @@ $(function() {
             loadFeed(0, function() {
                 initialFeed = $('.feed').html();
                 //load next feed
-                loadFeed(1, function() {
-                    done();
-                });
+                loadFeed(1, done);
             });
         });
 
-        it('feed is updated', function(done) {
+        it('feed is updated', function() {
             //compare two feeds
             expect($('.feed').html()).not.toBe(initialFeed);
-            done();
         });
     });
 }());
