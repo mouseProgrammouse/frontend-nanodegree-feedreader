@@ -47,7 +47,7 @@ $(function() {
          * hidden by default.
          */
         it('menu element is hidden by default', function() {
-            expect($('body').attr('class')).toContain('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
 
         /*This test to make sure that the menu changes
@@ -72,9 +72,10 @@ $(function() {
             loadFeed(0, done);
         });
 
-        it('feed is loaded', function() {
+        it('feed is loaded', function(done) {
             //check that feed is loaded
-            expect($('.feed').children().length).toBeGreaterThan(0);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
+            done();
         });
     });
 
@@ -83,17 +84,21 @@ $(function() {
         /* This test to make sure that the feed is updated correctly
          */
         let initialFeed;
+
         beforeEach(function(done) {
-            loadFeed(0, function(done) {
+            loadFeed(0, function() {
                 initialFeed = $('.feed').html();
+                //load next feed
+                loadFeed(1, function() {
+                    done();
+                });
             });
-            //load next feed
-            loadFeed(1, done);
         });
 
-        it('feed is updated', function() {
+        it('feed is updated', function(done) {
             //compare two feeds
             expect($('.feed').html()).not.toBe(initialFeed);
+            done();
         });
     });
 }());
